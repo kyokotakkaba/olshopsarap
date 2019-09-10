@@ -1,5 +1,14 @@
 <?php 
 include '../config.php';
+include 'redirect_login.php';
+include '../database_connect.php';
+
+$email = mysqli_real_escape_string($conn,$_GET["email"]);
+
+$result = mysqli_query($conn, "SELECT * FROM pengguna where email='$email'");
+$row = mysqli_fetch_assoc($result);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,14 +22,15 @@ include '../config.php';
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<form action="konfirmasi_login.php" method="post">
-		<h1>PENGGUNA</h1>
+	<a href="manajemen_pengguna.php">Kembali</a>
+	<form action="submit_edit_pengguna.php" method="post">
 		<br>
-		email: <input type="email" name="email">
+		email: <input type="email" value="<?php echo $row['email']?>" disabled> 
+		<input type="hidden" name="email" value="<?php echo $row['email']?>">
 		<br>
-		password: <input type="password" name="password">
+		password: <input type="password" name="password" value="<?php echo $row['password']?>">
 		<br>
-		<input type="checkbox" name="tetap_login"> Tetap Login
+		nama: <input type="text" name="nama" value="<?php echo $row['nama']?>">
 		<br>
 		<button type="submit">Submit</button>
 	</form>
