@@ -1,5 +1,4 @@
 <?php 
-include '../config.php';
 include '../database_connect.php';
 
 $email = mysqli_real_escape_string($conn,$_POST["email"]);
@@ -9,10 +8,8 @@ $password = mysqli_real_escape_string($conn,$_POST["password"]);
 $sql = "INSERT INTO pengguna (email, password, nama) VALUES ('$email', '$password', '$nama')";
 
 if (mysqli_query($conn, $sql)) {
-	echo "Registrasi berhasil.";
+	echo "<div class='alert alert-success'>Registrasi berhasil</div>";
 } else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    echo "<div class='alert alert-danger'>Gagal Registrasi: " . $sql . "<br>" . mysqli_error($conn). "</div>";
 }
 ?>
-
-<a href='login.php'>Ke Halaman Login</a>

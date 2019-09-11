@@ -1,5 +1,4 @@
 <?php 
-include '../config.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +12,12 @@ include '../config.php';
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<form action="konfirmasi_login.php" method="post">
+	<?php 
+	if(isset($_POST['submit'])) {
+		include 'konfirmasi_login.php';
+	}
+	?>
+	<form action="" method="post">
 		<h1>PENGGUNA</h1>
 		<br>
 		email: <input type="email" name="email">
@@ -22,7 +26,7 @@ include '../config.php';
 		<br>
 		<input type="checkbox" name="tetap_login"> Tetap Login
 		<br>
-		<button type="submit">Submit</button>
+		<button type="submit" name="submit">Submit</button>
 	</form>
 </body>
 </html>

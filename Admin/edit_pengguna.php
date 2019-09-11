@@ -1,12 +1,6 @@
 <?php 
-include '../config.php';
 include 'redirect_login.php';
 include '../database_connect.php';
-
-$email = mysqli_real_escape_string($conn,$_GET["email"]);
-
-$result = mysqli_query($conn, "SELECT * FROM pengguna where email='$email'");
-$row = mysqli_fetch_assoc($result);
 
 
 ?>
@@ -22,8 +16,20 @@ $row = mysqli_fetch_assoc($result);
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+	<?php 
+	if(isset($_POST['submit'])) {
+		include 'submit_edit_pengguna.php';
+	}
+	?>
 	<a href="manajemen_pengguna.php">Kembali</a>
-	<form action="submit_edit_pengguna.php" method="post">
+	<form action="" method="post">
+		
+		<?php 
+		$email = mysqli_real_escape_string($conn,$_GET["email"]);
+		$result = mysqli_query($conn, "SELECT * FROM pengguna where email='$email'");
+		$row = mysqli_fetch_assoc($result);
+		?>
+
 		<br>
 		email: <input type="email" value="<?php echo $row['email']?>" disabled> 
 		<input type="hidden" name="email" value="<?php echo $row['email']?>">
@@ -32,7 +38,7 @@ $row = mysqli_fetch_assoc($result);
 		<br>
 		nama: <input type="text" name="nama" value="<?php echo $row['nama']?>">
 		<br>
-		<button type="submit">Submit</button>
+		<button type="submit" name="submit">Submit</button>
 	</form>
 </body>
 </html>

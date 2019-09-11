@@ -22,8 +22,7 @@ if($berhasilLogin){
 	header("Location: ".$url_website."/admin/dashboard.php");
 	die();
 }else{
-	header("Location: ".$url_website."/admin/login.php");
-	die();
+	echo "<div class='alert alert-danger'>Gagal login</div>";
 }
 
 ?>

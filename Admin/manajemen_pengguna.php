@@ -1,5 +1,4 @@
 <?php 
-include '../config.php';
 include 'redirect_login.php';
 include '../database_connect.php';
 ?>
@@ -17,6 +16,11 @@ include '../database_connect.php';
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+	<?php 
+	if(isset($_POST['submit'])) {
+		include 'hapus_pengguna.php';
+	}
+	?>	
 	<a href="dashboard.php">kembali ke dashboard</a>
 	<table class="table table-hover">
 		<thead>
@@ -37,8 +41,13 @@ include '../database_connect.php';
 					<td><?php echo $row['email'] ?></td>
 					<td><?php echo $row['password'] ?></td>
 					<td><?php echo $row['nama'] ?></td>
-					<td> <a href="edit_pengguna.php?email=<?php echo $row['email'] ?>">Edit</a> </td>
-					<td> <a href="hapus_pengguna.php?email=<?php echo $row['email'] ?>" onclick="return confirm('Menghapus pengguna ini?')">Hapus</a> </td>
+					<td> <button><a href="edit_pengguna.php?email=<?php echo $row['email'] ?>">Edit</a></button> </td>
+					<td> 
+						<form action="" method="POST">
+							<input type="submit" name="submit" value="Hapus" onclick="return confirm('Menghapus pengguna ini?')"> 
+							<input type="hidden" name="email" value="<?php echo $row['email'] ?>"> 
+						</form> 
+					</td>
 				</tr>
 				<?php
 			}

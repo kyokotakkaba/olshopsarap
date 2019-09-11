@@ -1,4 +1,5 @@
 <?php 
+include '../config.php';
 session_start();
 $isLoggedIn = false;
 if (!empty($_SESSION["sesi_pengguna"])) {

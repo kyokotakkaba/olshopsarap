@@ -1,6 +1,3 @@
-<?php 
-include '../config.php';
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +10,12 @@ include '../config.php';
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<form action="input_registrasi.php" method="post" onsubmit="validasi(event)">
+	<?php 
+	if(isset($_POST['submit'])) {
+		include 'input_registrasi.php';
+	}
+	?>
+	<form action="" method="post" onsubmit="validasi(event)">
 		<h1>Registrasi</h1>
 		<br>
 		email: <input type="email" name="email">
@@ -24,7 +26,7 @@ include '../config.php';
 		<br>
 		konfirmasi password: <input type="password" id="konfirmasi_password">
 		<br>
-		<button type="submit">Submit</button>
+		<button type="submit" name="submit">Submit</button>
 	</form>
 </body>
 <script>
@@ -34,8 +36,6 @@ include '../config.php';
 			alert("Kolom konfirmasi password tidak sama");
 		}
 	}
-
-
 </script>
 
 

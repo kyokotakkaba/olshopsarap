@@ -1,5 +1,4 @@
 <?php 
-include '../config.php';
 include 'redirect_login.php';
 ?>
 <!DOCTYPE html>
