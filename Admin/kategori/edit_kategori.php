@@ -1,6 +1,6 @@
 <?php 
-include 'redirect_login.php';
-include '../database_connect.php';
+include __DIR__.'/../redirect_login.php';
+include __DIR__.'/../../database_connect.php';
 
 
 ?>
@@ -18,25 +18,23 @@ include '../database_connect.php';
 <body>
 	<?php 
 	if(isset($_POST['submit'])) {
-		include 'submit_edit_pengguna.php';
+		include __DIR__.'/submit_edit_kategori.php';
 	}
 	?>
-	<a href="manajemen_pengguna.php">Kembali</a>
+	<a href="index.php">Kembali</a>
 	<form action="" method="post">
 		
 		<?php 
-		$email = mysqli_real_escape_string($conn,$_GET["email"]);
-		$result = mysqli_query($conn, "SELECT * FROM pengguna where email='$email'");
+		$id = mysqli_real_escape_string($conn,$_GET["id"]);
+		$result = mysqli_query($conn, "SELECT * FROM kategori_produk where id_kategori='$id'");
 		$row = mysqli_fetch_assoc($result);
 		?>
 
 		<br>
-		email: <input type="email" value="<?php echo $row['email']?>" disabled> 
-		<input type="hidden" name="email" value="<?php echo $row['email']?>">
+		id: <input type="text" value="<?php echo $row['id_kategori']?>" disabled> 
+		<input type="hidden" name="id_kategori" value="<?php echo $row['id_kategori']?>">
 		<br>
-		password: <input type="password" name="password" value="<?php echo $row['password']?>">
-		<br>
-		nama: <input type="text" name="nama" value="<?php echo $row['nama']?>">
+		nama: <input type="text" name="nama_kategori" value="<?php echo $row['nama_kategori']?>">
 		<br>
 		<button type="submit" name="submit">Submit</button>
 	</form>

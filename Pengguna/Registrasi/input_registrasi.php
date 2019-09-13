@@ -1,5 +1,5 @@
 <?php 
-include '../database_connect.php';
+include __DIR__.'/../../database_connect.php';
 
 $email = mysqli_real_escape_string($conn,$_POST["email"]);
 $nama = mysqli_real_escape_string($conn,$_POST["nama"]);

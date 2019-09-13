@@ -1,8 +1,8 @@
 <?php 
 session_start();
 
-include '../config.php';
-include '../database_connect.php';
+include __DIR__.'/../../config.php';
+include __DIR__.'/../../database_connect.php';
 
 $email = mysqli_real_escape_string($conn,$_POST["email"]);
 $password = mysqli_real_escape_string($conn,$_POST["password"]);
@@ -19,7 +19,7 @@ if($berhasilLogin){
 	}else{
 		$_SESSION["sesi_pengguna"] = $email;
 	}
-	header("Location: ".$url_website."/pengguna/dashboard.php");
+	header("Location: ".$url_website."/pengguna/index.php");
 	die();
 }else{
 	echo "<div class='alert alert-danger'>Gagal login</div>";

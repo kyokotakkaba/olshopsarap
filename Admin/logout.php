@@ -1,5 +1,5 @@
 <?php 
-include '../config.php';
+include __DIR__.'/../config.php';
 session_start();
 session_destroy();
 
@@ -8,7 +8,7 @@ if (isset($_COOKIE['cookie_admin'])) {
     setcookie('cookie_admin', '', time() - 3600, '/');
 }
 
-header("Location: ".$url_website."/admin/login.php");
+header("Location: ".$url_website."/admin/login/index.php");
 die();
 
 ?>

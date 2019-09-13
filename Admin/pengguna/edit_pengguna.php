@@ -1,4 +1,8 @@
 <?php 
+include __DIR__.'/../redirect_login.php';
+include __DIR__.'/../../database_connect.php';
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,17 +18,25 @@
 <body>
 	<?php 
 	if(isset($_POST['submit'])) {
-		include 'konfirmasi_login.php';
+		include __DIR__.'/submit_edit_pengguna.php';
 	}
 	?>
+	<a href="index.php">Kembali</a>
 	<form action="" method="post">
-		<h1>PENGGUNA</h1>
+		
+		<?php 
+		$email = mysqli_real_escape_string($conn,$_GET["email"]);
+		$result = mysqli_query($conn, "SELECT * FROM pengguna where email='$email'");
+		$row = mysqli_fetch_assoc($result);
+		?>
+
 		<br>
-		email: <input type="email" name="email">
+		email: <input type="email" value="<?php echo $row['email']?>" disabled> 
+		<input type="hidden" name="email" value="<?php echo $row['email']?>">
 		<br>
-		password: <input type="password" name="password">
+		password: <input type="password" name="password" value="<?php echo $row['password']?>">
 		<br>
-		<input type="checkbox" name="tetap_login"> Tetap Login
+		nama: <input type="text" name="nama" value="<?php echo $row['nama']?>">
 		<br>
 		<button type="submit" name="submit">Submit</button>
 	</form>

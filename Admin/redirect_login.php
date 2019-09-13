@@ -1,5 +1,5 @@
 <?php 
-include '../config.php';
+include __DIR__.'/../config.php';
 session_start();
 $isLoggedIn = false;
 if (!empty($_SESSION["sesi_admin"])) {
@@ -10,7 +10,7 @@ if (!empty($_SESSION["sesi_admin"])) {
 }
 
 if (!$isLoggedIn) {
-	header("Location: ".$url_website."/admin/login.php");
+	header("Location: ".$url_website."/admin/login/index.php");
 	die();
 }
 

@@ -1,5 +1,5 @@
 <?php 
-include 'redirect_login.php';
+include __DIR__.'/redirect_login.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

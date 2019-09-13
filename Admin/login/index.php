@@ -14,7 +14,7 @@
 <body>
 	<?php 
 	if(isset($_POST['submit'])) {
-		include 'konfirmasi_login.php';
+		include __DIR__.'/konfirmasi_login.php';
 	}
 	?>	
 	<form action="" method="post">
