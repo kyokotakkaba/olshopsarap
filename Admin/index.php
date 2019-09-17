@@ -19,6 +19,8 @@ include __DIR__.'/redirect_login.php';
 	<br>
 	<a href="kategori/index.php">Kategori</a>
 	<br>
+	<a href="barang/index.php">Barang</a>
+	<br>
 	<a href="logout.php">LOGOUT</a>
 </body>
 </html>
