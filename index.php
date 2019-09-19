@@ -24,7 +24,58 @@ include __DIR__.'/database_connect.php';
 	<br>
 	<a href="pengguna/registrasi/index.php">Registrasi</a>
 	<br>
-	
+
+	<h1>Keranjang Belanja</h1>
+	<?php 
+	if (isset($_SESSION["isi_cart"])) {
+		$total_semua = 0;
+		?>
+		<form action="index.php?aksi=bersihkan" method="POST">
+			<input type="submit" name="submit" value="Bersihkan Keranjang belanja" onclick="return confirm('Membersihkan keranjang belanja?')">
+		</form> 
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Nama</th>
+					<th>Harga</th>
+					<th>Jumlah</th>
+					<th>Total</th>
+					<th>Aksi</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php
+				foreach ($_SESSION["isi_cart"] as $kode) {
+					$total = $_SESSION["harga"][$kode]*$_SESSION["jumlah"][$kode];
+					$total_semua = $total_semua + $total;
+					?>
+					<tr>
+						<td><?php echo $_SESSION["nama_barang"][$kode] ?></td>
+						<td><?php echo $_SESSION["harga"][$kode] ?></td>
+						<td><?php echo $_SESSION["jumlah"][$kode] ?></td>
+						<td><?php echo $total ?></td>
+						<td> 
+							<form action="index.php?aksi=hapus" method="POST">
+								<input type="submit" name="submit" value="Hapus" onclick="return confirm('Menghapus barang ini?')"> 
+								<input type="hidden" name="kode_barang" value="<?php echo $kode ?>"> 
+							</form> 
+						</td>
+					</tr>
+					<?php
+				}
+				?>
+
+			</tbody>
+		</table>
+
+		<h4>Total Harga: <?php echo $total_semua?></h4>
+		<button><a href="pengguna/checkout/index.php">CHECK OUT</a></button>
+		<?php 
+	} 
+	?>
+
+
+	<h1>Katalog</h1>
 	<?php 
 	$result = mysqli_query($conn, "SELECT * FROM barang NATURAL JOIN kategori_produk");
 	while($row = mysqli_fetch_assoc($result)) {
@@ -41,6 +92,8 @@ include __DIR__.'/database_connect.php';
 					Jumlah: <input type="number" name="jumlah" value="1">
 					<input type="submit" name="submit" value="Tambahkan ke Keranjang"> 
 					<input type="hidden" name="kode_barang" value="<?php echo $row['kode_barang'] ?>"> 
+					<input type="hidden" name="nama_barang" value="<?php echo $row['nama_barang'] ?>"> 
+					<input type="hidden" name="harga" value="<?php echo $row['harga'] ?>"> 
 				</form>
 			</div> 
 		</div>
