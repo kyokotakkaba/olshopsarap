@@ -1,4 +1,5 @@
 <?php 
+include __DIR__.'/../config.php';
 session_start();
 $isLoggedIn = false;
 if (!empty($_SESSION["sesi_pengguna"])) {
@@ -9,7 +10,7 @@ if (!empty($_SESSION["sesi_pengguna"])) {
 }
 
 if (!$isLoggedIn) {
-	header("Location: ".$url_website."/Pengguna/login.php");
+	header("Location: ".$url_website."/pengguna/login/index.php");
 	die();
 }
 
